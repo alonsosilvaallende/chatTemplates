@@ -44,6 +44,7 @@ class Name(Widget):
     add_generation_prompt = reactive(False)
     tokenize = reactive(False)
     use_tools = reactive(False)
+    enable_thinking = reactive(False)
     representation = reactive(False)
 
     def render(self) -> str:
@@ -68,9 +69,9 @@ class Name(Widget):
         if self.model == "mistralai/Mistral-7B-Instruct-v0.3":
             tokenizer.chat_template = MISTRAL
         if self.use_tools:
-            prompt = tokenizer.apply_chat_template(messages, tokenize=self.tokenize, tools=tools, add_generation_prompt=self.add_generation_prompt)
+            prompt = tokenizer.apply_chat_template(messages, tokenize=self.tokenize, tools=tools, enable_thinking=self.enable_thinking, add_generation_prompt=self.add_generation_prompt)
         else:
-            prompt = tokenizer.apply_chat_template(messages, tokenize=self.tokenize, add_generation_prompt=self.add_generation_prompt)
+            prompt = tokenizer.apply_chat_template(messages, tokenize=self.tokenize, enable_thinking=self.enable_thinking, add_generation_prompt=self.add_generation_prompt)
         if self.representation:
             prompt = repr(prompt)
         if self.tokenize:
@@ -97,11 +98,13 @@ class Watch(Static):
                 focused_switch = Switch(value=False, id="generation")
                 focused_switch.focus()
                 yield focused_switch
-                yield Static("Use a tool:", classes="label")
+                yield Static("Use tool:", classes="label")
                 yield Switch(id="usetool")
                 yield Static("Tokenize:", classes="label")
                 yield Switch(id="tokenize")
-                yield Static("String representation:", classes="label")
+                yield Static("Enable thinking:", classes="label")
+                yield Switch(id="think")
+                yield Static("String repr:", classes="label")
                 yield Switch(id="repr")
             yield Static("What the LLM sees:\n", classes="highlight")
             yield Name()
@@ -129,6 +132,10 @@ class Watch(Static):
     @on(Switch.Changed, "#tokenize")
     def switch_tokenize(self, event: Switch.Changed):
         self.query_one(Name).tokenize = not self.query_one(Name).tokenize
+
+    @on(Switch.Changed, "#think")
+    def switch_enable_thinking(self, event: Switch.Changed):
+        self.query_one(Name).enable_thinking = not self.query_one(Name).enable_thinking
 
     @on(Switch.Changed, "#repr")
     def switch_representation(self, event: Switch.Changed):
