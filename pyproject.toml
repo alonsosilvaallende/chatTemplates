@@ -54,3 +54,5 @@ dependencies = [
     "urllib3==2.5.0",
     "zstandard==0.23.0",
 ]
+[project.scripts]
+chattemplate = "chatTemplate.app"
