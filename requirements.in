@@ -1,0 +1,7 @@
+jinja2
+langchain-core
+protobuf
+pydantic
+sentencepiece
+textual
+transformers
