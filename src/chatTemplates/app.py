@@ -157,7 +157,6 @@ class Watch(Static):
     def user(self, event: Input.Submitted):
         self.query_one(Name).user_prompt = event.value
 
-
 class WatchApp(App):
     CSS ="""
 Watch {   
