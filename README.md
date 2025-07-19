@@ -8,7 +8,15 @@ I built this tool to help me understand how chat templates work. Select a model 
 <img width="697" alt="image" src="https://github.com/user-attachments/assets/14c65d15-f4e2-4292-b504-9647bcd44f63" />
 
 
-To run this app, if you do not have [uv](https://docs.astral.sh/uv/) installed, follow the [uv installation instructions](https://docs.astral.sh/uv/getting-started/installation/) to install it. Then run:
-```console
-uv run https://raw.githubusercontent.com/alonsosilvaallende/chatTemplates/refs/heads/main/chattemplates.py
+## 🚀 Quick Start
+
+### "Installation"
+
+```bash
+uvx --from git+https://github.com/alonsosilvaallende/chatTemplates chatTemplates
+```
+
+Or equivalently:
+```bash
+uv run https://raw.githubusercontent.com/alonsosilvaallende/chatTemplates/refs/heads/main/src/chatTemplates/app.py
 ```
