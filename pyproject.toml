@@ -15,4 +15,4 @@ dependencies = [
 ]
 
 [project.scripts]
-chatTemplates = "chatTemplates.app:WatchApp.run"
+chatTemplates = "chatTemplates.app"
