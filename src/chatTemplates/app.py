@@ -206,6 +206,9 @@ Switch {
     def on_mount(self) -> None:
         self.title = "Understanding Chat Templates"
 
-if __name__ == "__main__":
+def main():
     app = WatchApp()
     app.run()
+
+if __name__ == "__main__":
+    main()
